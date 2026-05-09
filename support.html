@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SnapFrame — Support</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+
+    :root {
+      --purple: #534AB7;
+      --purple-light: #EEEDFE;
+      --purple-mid: #7B74D4;
+      --bg: #F8F8FC;
+      --card: #FFFFFF;
+      --text: #0F0F13;
+      --text-muted: #6B6B80;
+      --border: rgba(83, 74, 183, 0.12);
+      --radius: 16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0F0F13;
+        --card: #1A1A24;
+        --text: #F0F0F8;
+        --text-muted: #888899;
+        --border: rgba(255,255,255,0.07);
+        --purple-light: rgba(83,74,183,0.18);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--purple) 0%, #7B74D4 100%);
+      padding: 60px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 32px;
+      border: 1px solid rgba(255,255,255,0.2);
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 36px);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+
+    .hero h1 span { opacity: 0.7; font-weight: 300; }
+
+    .hero .subtitle {
+      color: rgba(255,255,255,0.75);
+      margin-top: 8px;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 4px 14px;
+      border-radius: 100px;
+    }
+
+    .nav-links a.active {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    /* Container */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* Contact cards */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 28px 0 36px;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      display: block;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(83,74,183,0.12);
+    }
+
+    .contact-card .icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .contact-card .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--purple);
+      font-family: 'DM Mono', monospace;
+      margin-bottom: 6px;
+    }
+
+    .contact-card .value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      word-break: break-all;
+    }
+
+    .contact-card .hint {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Response time banner */
+    .response-banner {
+      background: var(--purple-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+
+    .response-banner .icon { font-size: 22px; flex-shrink: 0; }
+
+    .response-banner p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .response-banner strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--purple);
+      margin-bottom: 2px;
+    }
+
+    /* Sections */
+    .section { margin-bottom: 36px; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 10px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 16px;
+    }
+
+    /* FAQ accordion */
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 16px 20px;
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .faq-question .arrow {
+      font-size: 12px;
+      color: var(--purple);
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 20px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .arrow { transform: rotate(180deg); }
+
+    /* Steps */
+    .steps { list-style: none; padding: 0; counter-reset: step; }
+
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .steps li:last-child { border-bottom: none; }
+
+    .steps li::before {
+      content: counter(step);
+      min-width: 28px;
+      height: 28px;
+      background: var(--purple-light);
+      color: var(--purple);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .steps li strong {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    /* Card */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin: 14px 0;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--purple); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-icon">🛟</div>
+    <h1>SnapFrame <span>Support</span></h1>
+    <p class="subtitle">We're here to help — usually within 24 hours</p>
+    <div class="nav-links">
+      <a href="index.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="support.html" class="active">Support</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Contact cards -->
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:ak375456@gmail.com">
+        <span class="icon">📧</span>
+        <div class="label">Email</div>
+        <div class="value">ak375456@gmail.com</div>
+        <div class="hint">Best for detailed issues</div>
+      </a>
+      <a class="contact-card" href="tel:+923370380008">
+        <span class="icon">📞</span>
+        <div class="label">Phone / WhatsApp</div>
+        <div class="value">0337 038 0008</div>
+        <div class="hint">Available 9am – 9pm PKT</div>
+      </a>
+      <a class="contact-card" href="https://github.com/ak375456" target="_blank">
+        <span class="icon">💻</span>
+        <div class="label">GitHub</div>
+        <div class="value">ak375456</div>
+        <div class="hint">Report bugs & issues</div>
+      </a>
+    </div>
+
+    <!-- Response time -->
+    <div class="response-banner">
+      <div class="icon">⏱</div>
+      <div>
+        <strong>Response Time</strong>
+        <p>We typically respond within 24 hours on business days. For urgent issues, WhatsApp is the fastest way to reach us.</p>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section">
+      <div class="section-label">FAQ</div>
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Does SnapFrame require an internet connection?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          No. SnapFrame works 100% offline. You don't need Wi-Fi or mobile data to use any feature of the app. Everything happens on your device.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Where are my exported images saved?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          All exported images are saved directly to your device's photo library. You can find them in your Photos app after exporting.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          How do I clear my export history?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Go to Settings → Storage → Clear Export History. This removes all saved thumbnails and records from the app. This action cannot be undone.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Does SnapFrame collect any of my data?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          No. SnapFrame collects absolutely no data. No analytics, no tracking, no crash reports. Your photos never leave your device. See our Privacy Policy for full details.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          I purchased the app but it's not unlocked. What do I do?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Try going to Settings → Restore Purchases inside the app. If that doesn't work, make sure you're signed in with the same Apple ID used for the purchase, then contact us at ak375456@gmail.com with your purchase receipt.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          How do I request a refund?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Refunds are handled by Apple. Visit reportaproblem.apple.com, sign in with your Apple ID, find SnapFrame, and select "Request a Refund". Apple typically processes refunds within 48 hours.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          The app crashed. What should I do?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          First try force-closing the app and reopening it. If the issue persists, try reinstalling the app — your purchase is tied to your Apple ID and will restore automatically. If it still crashes, email us at ak375456@gmail.com with your device model and iOS version.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggle(this)">
+          Can I use SnapFrame images for commercial purposes?
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Yes. Images you create with SnapFrame are entirely yours. You can use them for personal or commercial purposes including social media, marketing, and more.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- How to contact -->
+    <div class="section">
+      <div class="section-label">Contact Us</div>
+      <h2>How to Report an Issue</h2>
+      <ul class="steps">
+        <li>
+          <div>
+            <strong>Describe the problem</strong>
+            Note what you were doing when the issue occurred and what you expected to happen.
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Include your device info</strong>
+            Your iPhone model (e.g. iPhone 14) and iOS version (Settings → General → About).
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Add a screenshot if possible</strong>
+            A screenshot of the issue helps us resolve it much faster.
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Email us</strong>
+            Send everything to <a href="mailto:ak375456@gmail.com" style="color:var(--purple);">ak375456@gmail.com</a> and we'll get back to you within 24 hours.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- App version -->
+    <div class="card">
+      <h3>📱 Current App Version</h3>
+      <p>SnapFrame v1.0.0 — Available on iOS. If you're experiencing issues, make sure you have the latest version installed from the App Store.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2025 SnapFrame. All rights reserved.</p>
+    <p style="margin-top:6px;">
+      <a href="index.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
+      <a href="support.html">Support</a> &nbsp;·&nbsp;
+      <a href="mailto:ak375456@gmail.com">Contact</a>
+    </p>
+  </footer>
+
+  <script>
+    function toggle(btn) {
+      const item = btn.closest('.faq-item');
+      item.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
