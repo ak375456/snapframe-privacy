@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SnapFrame — Terms of Service</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+
+    :root {
+      --purple: #534AB7;
+      --purple-light: #EEEDFE;
+      --purple-mid: #7B74D4;
+      --bg: #F8F8FC;
+      --card: #FFFFFF;
+      --text: #0F0F13;
+      --text-muted: #6B6B80;
+      --border: rgba(83, 74, 183, 0.12);
+      --radius: 16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0F0F13;
+        --card: #1A1A24;
+        --text: #F0F0F8;
+        --text-muted: #888899;
+        --border: rgba(255,255,255,0.07);
+        --purple-light: rgba(83,74,183,0.18);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--purple) 0%, #7B74D4 100%);
+      padding: 60px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 32px;
+      border: 1px solid rgba(255,255,255,0.2);
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 36px);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+
+    .hero h1 span { opacity: 0.7; font-weight: 300; }
+
+    .hero .subtitle {
+      color: rgba(255,255,255,0.75);
+      margin-top: 8px;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .hero .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #fff;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    /* Container */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* Promise banner */
+    .promise {
+      background: var(--purple-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin: 28px auto;
+      max-width: 720px;
+    }
+
+    .promise-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+
+    .promise strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--purple);
+      margin-bottom: 3px;
+    }
+
+    .promise p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* Sections */
+    .section { margin-bottom: 36px; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 10px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .section h2 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+
+    .section p {
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0;
+    }
+
+    .section ul li {
+      padding: 8px 0 8px 22px;
+      position: relative;
+      color: var(--text-muted);
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section ul li:last-child { border-bottom: none; }
+
+    .section ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--purple);
+      font-weight: 600;
+    }
+
+    /* Card */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin: 14px 0;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .card p { font-size: 13px; color: var(--text-muted); }
+
+    /* Highlight row */
+    .highlight-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .highlight-row .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--purple);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .highlight-row span { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--purple); text-decoration: none; }
+
+    .effective {
+      display: inline-block;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 4px 14px;
+      border-radius: 100px;
+      position: relative;
+    }
+
+    .nav-links a.active {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-icon">📋</div>
+    <h1>SnapFrame <span>Terms of Service</span></h1>
+    <p class="subtitle">Available on Android &amp; iOS</p>
+    <div class="badge">✦ Simple, Fair Terms — No Surprises</div>
+    <div class="nav-links">
+      <a href="index.html">Privacy Policy</a>
+      <a href="terms.html" class="active">Terms of Service</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Summary banner -->
+    <div class="promise">
+      <div class="promise-icon">👋</div>
+      <div>
+        <strong>Plain English Summary</strong>
+        <p>SnapFrame is a free tool to beautify your screenshots. Use it for personal or commercial content. Don't misuse it, resell it, or reverse-engineer it. That's pretty much it.</p>
+      </div>
+    </div>
+
+    <!-- Effective date -->
+    <p style="text-align:center; margin-bottom: 28px;">
+      <span class="effective">Effective date: June 1, 2025</span>
+    </p>
+
+    <!-- 1. Acceptance -->
+    <div class="section">
+      <div class="section-label">01 — Acceptance</div>
+      <h2>Agreement to Terms</h2>
+      <p>By downloading, installing, or using SnapFrame ("the app", "we", "our"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the app.</p>
+      <p>These terms apply to all users of SnapFrame on both Android and iOS platforms.</p>
+    </div>
+
+    <!-- 2. Description -->
+    <div class="section">
+      <div class="section-label">02 — The App</div>
+      <h2>What SnapFrame Does</h2>
+      <p>SnapFrame is a screenshot beautifier and social media post creator. It allows you to:</p>
+      <ul>
+        <li>Import screenshots from your device gallery</li>
+        <li>Apply backgrounds, frames, text, and styles</li>
+        <li>Crop and resize images for different platforms</li>
+        <li>Export and share styled images</li>
+        <li>Save export history locally on your device</li>
+      </ul>
+      <p>The app operates entirely offline. No internet connection is required and no data is transmitted to any server.</p>
+    </div>
+
+    <!-- 3. License -->
+    <div class="section">
+      <div class="section-label">03 — License</div>
+      <h2>Your License to Use SnapFrame</h2>
+      <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use SnapFrame for personal and commercial purposes, subject to these terms.</p>
+
+      <div class="card">
+        <h3>✅ You may</h3>
+        <p>Use SnapFrame to create content for personal or commercial social media posts, marketing materials, or any other lawful purpose.</p>
+      </div>
+
+      <div class="card">
+        <h3>🚫 You may not</h3>
+        <p>Copy, modify, distribute, sell, or sublicense the app itself or any part of its code, design, or assets. Reverse-engineer, decompile, or attempt to extract the source code of the app.</p>
+      </div>
+    </div>
+
+    <!-- 4. User Content -->
+    <div class="section">
+      <div class="section-label">04 — Your Content</div>
+      <h2>Content You Create</h2>
+      <p>You retain full ownership of all screenshots, images, and content you import into or create with SnapFrame. We make no claim over your content.</p>
+
+      <div class="highlight-row">
+        <div class="dot"></div>
+        <span>All images you import stay on your device — they are never uploaded anywhere</span>
+      </div>
+      <div class="highlight-row">
+        <div class="dot"></div>
+        <span>Exported images are saved to your photo library and are entirely yours</span>
+      </div>
+      <div class="highlight-row">
+        <div class="dot"></div>
+        <span>You are responsible for ensuring you have the rights to any content you import</span>
+      </div>
+      <div class="highlight-row">
+        <div class="dot"></div>
+        <span>Do not use SnapFrame to create illegal, harmful, or infringing content</span>
+      </div>
+    </div>
+
+    <!-- 5. Acceptable Use -->
+    <div class="section">
+      <div class="section-label">05 — Acceptable Use</div>
+      <h2>Acceptable Use Policy</h2>
+      <p>You agree not to use SnapFrame to create or distribute content that:</p>
+      <ul>
+        <li>Violates any applicable law or regulation</li>
+        <li>Infringes on the intellectual property rights of others</li>
+        <li>Is defamatory, abusive, threatening, or harassing</li>
+        <li>Contains malware, viruses, or harmful code</li>
+        <li>Impersonates any person or entity</li>
+        <li>Is obscene or violates community standards of any platform you share to</li>
+      </ul>
+    </div>
+
+    <!-- 6. In-App Purchases -->
+    <div class="section">
+      <div class="section-label">06 — Purchases</div>
+      <h2>In-App Purchases &amp; Pro Features</h2>
+      <p>SnapFrame may offer optional Pro features through a one-time purchase or subscription via the App Store or Google Play.</p>
+      <ul>
+        <li>All purchases are processed by Apple or Google — not by us directly</li>
+        <li>Purchases are subject to the respective platform's refund policies</li>
+        <li>We reserve the right to change pricing with reasonable notice</li>
+        <li>Pro features are tied to your Apple ID or Google account</li>
+      </ul>
+      <div class="card">
+        <h3>💳 Refunds</h3>
+        <p>Refund requests must be made through the App Store or Google Play. We are unable to process refunds directly. Please contact Apple or Google support for refund assistance.</p>
+      </div>
+    </div>
+
+    <!-- 7. Intellectual Property -->
+    <div class="section">
+      <div class="section-label">07 — Intellectual Property</div>
+      <h2>Our Intellectual Property</h2>
+      <p>SnapFrame, its name, logo, design, code, and all built-in assets are the intellectual property of Aftab Fazal Qayum. All rights reserved.</p>
+      <p>You may not use our name, logo, or branding without prior written permission.</p>
+    </div>
+
+    <!-- 8. Disclaimers -->
+    <div class="section">
+      <div class="section-label">08 — Disclaimers</div>
+      <h2>Disclaimers &amp; Limitations</h2>
+      <p>SnapFrame is provided "as is" without warranties of any kind, express or implied.</p>
+      <ul>
+        <li>We do not guarantee the app will be error-free or uninterrupted</li>
+        <li>We are not liable for any loss of data or content created with the app</li>
+        <li>We are not responsible for how third-party platforms handle content you share</li>
+        <li>The app may be updated, modified, or discontinued at any time</li>
+      </ul>
+      <p>To the maximum extent permitted by law, our total liability to you for any claim is limited to the amount you paid for the app (if anything).</p>
+    </div>
+
+    <!-- 9. Updates -->
+    <div class="section">
+      <div class="section-label">09 — Updates</div>
+      <h2>Changes to the App &amp; Terms</h2>
+      <p>We may update SnapFrame and these Terms of Service at any time. When we make material changes, we will update the effective date at the top of this page.</p>
+      <p>Continued use of the app after changes constitutes your acceptance of the updated terms. If you disagree with any changes, you may stop using the app.</p>
+    </div>
+
+    <!-- 10. Termination -->
+    <div class="section">
+      <div class="section-label">10 — Termination</div>
+      <h2>Termination</h2>
+      <p>You may stop using SnapFrame at any time by deleting the app from your device.</p>
+      <p>We reserve the right to terminate or suspend access to the app if you violate these terms, though given the offline nature of the app, this primarily refers to removing the app from app stores.</p>
+    </div>
+
+    <!-- 11. Governing Law -->
+    <div class="section">
+      <div class="section-label">11 — Governing Law</div>
+      <h2>Governing Law</h2>
+      <p>These terms are governed by and construed in accordance with applicable laws. Any disputes shall be resolved through good-faith negotiation first. If unresolved, disputes shall be subject to the jurisdiction of the courts applicable to the developer's location.</p>
+    </div>
+
+    <!-- 12. Contact -->
+    <div class="section">
+      <div class="section-label">12 — Contact</div>
+      <h2>Contact Us</h2>
+      <p>Questions about these terms? Reach us at:</p>
+      <div class="card">
+        <h3>📧 Email</h3>
+        <p><a href="mailto:ak375456@gmail.com" style="color: var(--purple);">ak375456@gmail.com</a></p>
+      </div>
+      <div class="card">
+        <h3>🌐 Developer</h3>
+        <p>Aftab Fazal Qayum — <a href="https://github.com/ak375456" style="color: var(--purple);">GitHub</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2025 SnapFrame. All rights reserved.</p>
+    <p style="margin-top:6px;">
+      <a href="index.html">Privacy Policy</a> &nbsp;·&nbsp;
+      <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
+      <a href="mailto:ak375456@gmail.com">Contact</a>
+    </p>
+  </footer>
+
+</body>
+</html>
